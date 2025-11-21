@@ -86,72 +86,118 @@ body{
   transform: scale(1);
   box-shadow: 0px 10px 15px;
 }
-        <meta charset="UTF-8">
+        
+          <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horizontal Timeline - Bootstrap 5</title>
-    <link rel="stylesheet" href=
-"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>Dark Timeline</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       body {
-    background: #8C8173;
-    margin-top: 20px;
+        body {
+    background-color: #212529; /* Dark background for the body */
+    color: #f8f9fa; /* Light text color for contrast */
 }
 
+.timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
 
-        .hori-timeline .events {
-            border-top: 3px solid green;
-        }
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: #495057; /* Darker line for the timeline */
+    transform: translateX(-50%);
+}
 
-        .hori-timeline .events 
-        .event-list {
-            display: block;
-            position: relative;
-            text-align: center;
-            margin-right: 0;
-        }
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
 
-        .hori-timeline .events 
-        .event-list:before {
-            content: "";
-            position: absolute;
-            height: 36px;
-            border-right: 2px dashed #2ddf36;
-            top: 0;
-        }
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse; /* Alternate sides for items */
+}
 
-        .hori-timeline .events .event-list 
-        .event-date {
-            position: absolute;
-            top: 38px;
-            left: 0;
-            right: 0;
-            width: 75px;
-            margin: 0 auto;
-            border-radius: 4px;
-            padding: 2px 4px;
-        }
+.timeline-marker {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #0d6efd; /* Bootstrap primary blue for markers */
+    border-radius: 50%;
+    z-index: 1;
+    flex-shrink: 0; /* Prevent marker from shrinking */
+}
 
+.timeline-item:nth-child(odd) .timeline-marker {
+    margin-left: -10px; /* Adjust marker position for alternating items */
+}
 
-        @media (min-width: 1140px) {
-            .hori-timeline .events 
-            .event-list {
-                display: inline-block;
-                width: 24%;
-                padding-top: 45px;
-            }
+.timeline-item:nth-child(even) .timeline-marker {
+    margin-right: -10px; /* Adjust marker position for alternating items */
+}
 
-            .hori-timeline .events 
-            .event-list .event-date {
-                top: -12px;
-            }
-        }
+.timeline-content {
+    background-color: #343a40; /* Darker background for content boxes */
+    padding: 20px;
+    border-radius: 8px;
+    flex-grow: 1; /* Allow content to take available space */
+}
 
-        .card {
-            border: none;
-            margin-bottom: 24px;
-            box-shadow: 0 0 13px 0 rgba(236, 236, 241, 0.44);
-        }
-    </style>
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 30px; /* Space for marker on opposite side */
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 30px; /* Space for marker on opposite side */
+}
+
+.timeline-title {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.timeline-date {
+    color: #adb5bd; /* Lighter grey for dates */
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px; /* Adjust line position for smaller screens */
+        transform: translateX(0);
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd) {
+        flex-direction: row; /* Stack items vertically on small screens */
+        align-items: flex-start;
+    }
+
+    .timeline-marker {
+        margin-left: 10px; /* Adjust marker position */
+        margin-right: 20px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-marker {
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: 30px;
+        margin-right: 0;
+    }
+}
 
     </style>
 </head>
@@ -171,83 +217,45 @@ body{
 <section class="marquee">
 <marquee><P><a style="color: white;" href="registration.html">🆕Registration for NueroNova (AI Contest) is live🆕|</a><a href="registration.html" style="color: white;">🆕Registration for InferNova ML Sprint (Ml Contest) is live🆕|</a><a style="color: white;" href="registration.html">🆕Registration for Firewall Fury Challenge (Cyber Security Contest) is live🆕</a></P></marquee>
 </section>
- <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-5 text-success">
-                            HackVerse Hackathons Events
-                        </h4>
-
-                        <div class="hori-timeline" dir="ltr">
-                            <ul class="list-inline events">
-                                <li class="list-inline-item event-list">
-                                    <div class="px-4">
-
-                                        <h5 class="font-size-16 text-primary">
-                                            Registration Start
-                                        </h5>
-
-                                        <p class="text-info">
-                                            Registration will start from 22-11-2025 @ 12 pm
-                                        </p>
-                                        
-                                    </div>
-
-                                </li>
-                                <li class="list-inline-item event-list">
-                                    <div class="px-4">
-
-                                        <h5 class="font-size-16 text-warning">
-                                           Registration End Date
-
-                                        </h5>
-                                        <p class="text-muted">
-                                            Registration will end at 15-11-2025 @ 11:59 pm
-                                        </p>
-                                        
-                                            
-                    
-                                    </div>
-                                </li>
-                                <li class="list-inline-item event-list">
-                                    <div class="px-4">
-
-                                        <h5 class="font-size-16 text-danger">
-                                            Contest Date
-                                        </h5>
-                                        <p class="text-primary">
-                                            Participants will upload their projects on the website.
-                                        </p>
-                                        
-                                            
-                                        
-                                    </div>
-                                </li>
-                                <li class="list-inline-item event-list">
-                                    <div class="px-4">
-
-                                        <h5 class="font-size-16 text-success">
-                                            Results announcements
-                                        </h5>
-                                        <p class="text-muted">
-                                           Results announcements and price distributions on 26-01-2026
-                                        </p>
-                                        
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+ <div class="container py-5">
+        <h2 class="text-center mb-5">Schedule of events</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Event 1: Registration begins.</h3>
+                    <p class="timeline-date">01-12-2025</p>
+                    <p>Registration for all NueroNova, InferNova ML Sprint, Firewall fury challenges will be begin from 01-12-2025</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Event 2: Registration Ends</h3>
+                    <p class="timeline-date"></p>
+                    <p>Registration for all NueroNova, InferNova ML Sprint, Firewall fury challenges will be ending on 01-12-2025</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Event 3: Contest</h3>
+                    <p class="timeline-date">March 2023</p>
+                    <p>Contests of all NueroNova, InferNova ML Sprint, Firewall fury challenges will be live on 31-12-2025</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Event 4: Contest</h3>
+                    <p class="timeline-date">March 2023</p>
+                    <p>Results of all NueroNova, InferNova ML Sprint, Firewall fury challenges will be declared on 12-01-2026</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src=
-"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <section style="background-color: rgb(58, 60, 63); color: aliceblue; font-size: 25px;">
   <h1 style="text-align: center;"><b>Prizes</b></h1>
   🏆PRIZES (All Contests):<br>
@@ -277,6 +285,7 @@ All participants receive:<br>
 </body>
 
 </html> 
+
 
 
 
